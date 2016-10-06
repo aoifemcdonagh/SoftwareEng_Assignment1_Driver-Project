@@ -8,6 +8,6 @@ jdk:
   -openjdk7
 
 after_success: 
- mvn test
+ mvn test -e
 
 
