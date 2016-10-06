@@ -8,35 +8,47 @@ import org.joda.time.*;
  */
 public class TestClass {
     public static void main(String args[]){
-        Student s1 = new Student("Alex1", 18, "20/11/1997", 13411349);
-        Student s2 = new Student("Alex2", 19, "20/11/1996", 13411348);
-        Student s3 = new Student("Alex3", 20, "20/11/1995", 13411347);
-        Student s4 = new Student("Alex4", 21, "20/11/1994", 13411346);
-        Student s5 = new Student("Alex5", 22, "20/11/1993", 13411345);
+        // Create Students
+        Student s1 = new Student("Alex", 18, "20/11/1997", 13411349);
+        Student s2 = new Student("John", 19, "20/11/1996", 13411348);
+        Student s3 = new Student("Mary", 20, "20/11/1995", 13411347);
+        Student s4 = new Student("Emma", 21, "20/11/1994", 13411346);
+        Student s5 = new Student("Frank", 22, "20/11/1993", 13411345);
         
-        List<Student> students = new ArrayList();
-        students.add(s1);
-        students.add(s2);
-        students.add(s3);
-        students.add(s4);
-        students.add(s5);
-        
-        Module softwareEng = new Module("Software Engineering III", "CT417", students);
-        
-        List<Module> modules = new ArrayList();
-        modules.add(softwareEng);
+        // Create modules
+        Module softwareEng = new Module("Software Engineering III", "CT417");
+        Module digitalSystems = new Module("Digital Systems", "EE432");
         
         LocalDate startDate = new LocalDate(2016,9,1);
         LocalDate endDate = new LocalDate(2017,5,30);
         
-        CourseProgramme BP4 = new CourseProgramme("4BP", modules, startDate, endDate);
+        // Create course programmes
+        CourseProgramme BP4 = new CourseProgramme("4BP", startDate, endDate);
+        CourseProgramme CT4 = new CourseProgramme("4CT", startDate, endDate);
         
-        System.out.println("\nModules:");
+        ArrayList<Student> studentsSE = new ArrayList(); // Software Eng students
+        ArrayList<Student> studentsDS = new ArrayList(); // Digital systems students
         
-        List<Module> moduleList = BP4.getModules();
+        // Adding modules to courses
+        BP4.addModule(softwareEng);
+        BP4.addModule(digitalSystems);
         
-        for (Module module : moduleList) {
-            System.out.println(module.getModuleName());
+        CT4.addModule(softwareEng);
+        
+        // Adding students to courses
+        BP4.addStudent(s1);
+        BP4.addStudent(s2);
+        BP4.addStudent(s3);
+        
+        CT4.addStudent(s4);
+        CT4.addStudent(s5);
+        
+        // Print out info for each student via course.
+        for(Student s : BP4.getStudents()){
+            s.printInfo();
+        }
+        for(Student s : CT4.getStudents()){
+            s.printInfo();
         }
     }
 }
